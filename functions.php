@@ -13,31 +13,38 @@ define( 'KADENCE_VERSION', '1.2.14' );
 define( 'KADENCE_MINIMUM_WP_VERSION', '6.0' );
 define( 'KADENCE_MINIMUM_PHP_VERSION', '7.4' );
 
-// Bail if requirements are not met.
-if ( version_compare( $GLOBALS['wp_version'], KADENCE_MINIMUM_WP_VERSION, '<' ) || version_compare( phpversion(), KADENCE_MINIMUM_PHP_VERSION, '<' ) ) {
-	require get_template_directory() . '/inc/back-compat.php';
-	return;
+// Only attempt to load WordPress specific pieces when WordPress is loaded.
+if ( function_exists( 'get_template_directory' ) && isset( $GLOBALS['wp_version'] ) ) {
+    // Bail if requirements are not met.
+    if ( version_compare( $GLOBALS['wp_version'], KADENCE_MINIMUM_WP_VERSION, '<' ) || version_compare( phpversion(), KADENCE_MINIMUM_PHP_VERSION, '<' ) ) {
+        require get_template_directory() . '/inc/back-compat.php';
+        return;
+    }
+    // Include WordPress shims.
+    require get_template_directory() . '/inc/wordpress-shims.php';
+
+    // Load the `kadence()` entry point function.
+    require get_template_directory() . '/inc/class-theme.php';
+
+    // Load the `kadence()` entry point function.
+    require get_template_directory() . '/inc/functions.php';
+
+    // Initialize the theme.
+    call_user_func( 'Kadence\kadence' );
 }
-// Include WordPress shims.
-require get_template_directory() . '/inc/wordpress-shims.php';
-
-// Load the `kadence()` entry point function.
-require get_template_directory() . '/inc/class-theme.php';
-
-// Load the `kadence()` entry point function.
-require get_template_directory() . '/inc/functions.php';
-
-// Initialize the theme.
-call_user_func( 'Kadence\kadence' );
 
 // função que libera o upload de qualquer tipo de arquivo para a biblioteca
 // importante para o upload de csv's e tsv's
 function allow_json_mime($mimes) {
-$mimes['json'] = 'application/json';
-return $mimes;
+    $mimes['json'] = 'application/json';
+    return $mimes;
 }
-add_filter('upload_mimes', 'allow_json_mime');
-define( 'ALLOW_UNFILTERED_UPLOADS', true );
+if ( function_exists( 'add_filter' ) ) {
+    add_filter( 'upload_mimes', 'allow_json_mime' );
+}
+if ( ! defined( 'ALLOW_UNFILTERED_UPLOADS' ) ) {
+    define( 'ALLOW_UNFILTERED_UPLOADS', true );
+}
 
 // FUNÇÕES QUE ALTERAM PAGINAS
 // Função que printa os dados dos professors na página TEAM
