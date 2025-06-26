@@ -298,7 +298,7 @@ function print_alumni($infos) {
                 echo "
                         </div>
                         <div class='card_academic'>
-                            <p>Defended his <bold>".$infos['Tipo']."</bold> in <bold>".$infos['Ano de defesa']."</bold></p>
+                            <p>Defended his <strong>".$infos['Tipo']."</strong> in <strong>".$infos['Ano de defesa']."</strong></p>
                             <p>Guided by <a href='/team/#professors'>".$infos['Orientador']."</a></p>
                         </div>
                         </div>
