@@ -317,7 +317,7 @@ h3.section_title {
     }
 }
 
-/* professoress */
+/* professores */
 .cards_container.professors {
     grid-template-columns: 1fr 1fr;
     align-items: center;
