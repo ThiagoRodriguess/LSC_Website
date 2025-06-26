@@ -2,7 +2,7 @@
 get_header();
 
 $open = fopen(get_field('alumni_file'), "r");
-$campos = fgetcsv($open, 10000, "\t");
+$campos = fgetcsv($open, 10000, "\t", '"', "\\");
 $data = transf_assoc_array($campos, $open, 'Aluno');
 // print_r($data);
 

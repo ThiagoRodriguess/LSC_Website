@@ -331,7 +331,7 @@ function print_alumni($infos) {
 // em um array associativo de chave($_key)
 function transf_assoc_array($labels, $fd, $_key) {
     $ret_array = [];
-    while (($data = fgetcsv($fd, 10000, "\t")) != FALSE) {
+    while (($data = fgetcsv($fd, 10000, "\t", '"', "\\")) != FALSE) {
         $temp = [];
         for ($i=0; $i < count($data); $i++) { 
             $temp[$labels[$i]]=$data[$i];
