@@ -43,7 +43,7 @@ get_header();
             <input type="text" name="" id="info_output" placeholder="Alumni output">
         </label>
         <button onclick=swap_function2()>Generate and copy Alumni output</button>
-        <a class='input_links' href="https://https://docs.google.com/spreadsheets/d/1AF5ilPVCf_f10OMedaJP-n2XgHZxRuCVIhkg8LT6BsQ/edit?gid=1195475715#gid=1195475715" target="_blank" rel="noopener noreferrer">Alumni spreadsheet</a>
+        <a class='input_links' href="https://docs.google.com/spreadsheets/d/1AF5ilPVCf_f10OMedaJP-n2XgHZxRuCVIhkg8LT6BsQ/edit?gid=1195475715#gid=1195475715" target="_blank" rel="noopener noreferrer">Alumni spreadsheet</a>
         <a class='input_links' href="https://lsc.ic.unicamp.br/alumni/" target="_blank" rel="noopener noreferrer">Alumni Page</a>
     </div>
 </div>
