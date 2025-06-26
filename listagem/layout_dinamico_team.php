@@ -27,7 +27,7 @@ get_header();
     <?php
         // Professores
         $open = fopen(get_field('professors_file'), "r");
-        $campos = fgetcsv($open, 10000, "\t");
+        $campos = fgetcsv($open, 10000, "\t", '"', "\\");
         $professors = transf_assoc_array($campos, $open, 'Nome');
         // print_r($professors);
     ?>
@@ -45,7 +45,7 @@ get_header();
     <?php 
         // Collaborators
         $open = fopen(get_field('collaborators_researchers_file'), "r");
-        $campos = fgetcsv($open, 10000, "\t");
+        $campos = fgetcsv($open, 10000, "\t", '"', "\\");
         $collab_res = transf_assoc_array($campos, $open, 'Nome');
         // print_r($collab_res);
     ?>
@@ -78,7 +78,7 @@ get_header();
     <?php
         // PHD
         $open = fopen(get_field('students_file'), "r");
-        $campos = fgetcsv($open, 10000, "\t");
+        $campos = fgetcsv($open, 10000, "\t", '"', "\\");
         $data = transf_assoc_array($campos, $open, 'Full Name');
         ksort($data);
     ?>
